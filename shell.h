@@ -43,6 +43,15 @@ typedef struct builtins
 	void (*f)(vars_t *);
 } builtins_t;
 
+/**
+ * struct signal_flag - Signal flag
+ * @sig_flag: signal flag for terminal
+ */
+typedef struct signal_flag
+{
+	unsigned int sig_flag;
+} sigflag_t;
+
 char **make_env(char **env);
 void free_env(char **env);
 ssize_t _puts(char *str);

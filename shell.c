@@ -1,7 +1,5 @@
 #include "shell.h"
 
-/* unsigned int sig_flag; */
-
 /**
  * sig_handler - Handles ^C signal interupt
  * @uuv: Unused variable
@@ -10,15 +8,15 @@
  */
 static void sig_handler(int uuv)
 {
-	unsigned int sig_flag;
-
-	(void) uuv;
-
-	if (sig_flag == 0)
+		sigflag_t *x = malloc(sizeof(unsigned int));
+		(void) uuv;
+		
+	if (x->sig_flag == 0)
 		_puts("\n$ ");
 
 	else
 		_puts("\n");
+	free(x);
 }
 
 /**
@@ -32,8 +30,9 @@ static void sig_handler(int uuv)
 int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 	vars_t vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
-	unsigned int is_pipe = 0, i, sig_flag;
+	unsigned int is_pipe = 0, i;
 	size_t len_buffer = 0;
+	sigflag_t *x = malloc(sizeof(unsigned int));
 
 	vars.argv = argv;
 	vars.env = make_env(environment);
@@ -42,10 +41,10 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		is_pipe = 1;
 	if (is_pipe == 0)
 		_puts("$ ");
-	sig_flag = 0;
+	x->sig_flag = 0;
 	while (getline(&(vars.buffer), &len_buffer, stdin) != -1)
 	{
-		sig_flag = 1;
+		x->sig_flag = 1;
 		vars.count++;
 		vars.commands = tokenize(vars.buffer, ";");
 		for (i = 0; vars.commands && vars.commands[i] != NULL; i++)
@@ -58,7 +57,7 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		}
 		free(vars.buffer);
 		free(vars.commands);
-		sig_flag = 0;
+		x->sig_flag = 0;
 		if (is_pipe == 0)
 			_puts("$ ");
 		vars.buffer = NULL;
@@ -67,5 +66,6 @@ int main(int argc __attribute__((unused)), char **argv, char **environment)
 		_puts("\n");
 	free_env(vars.env);
 	free(vars.buffer);
+	free(x);
 	exit(vars.status);
 }
