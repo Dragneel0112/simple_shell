@@ -10,7 +10,7 @@ static void sig_handler(int uuv)
 {
 		sigflag_t *x = malloc(sizeof(unsigned int));
 		(void) uuv;
-		
+
 	if (x->sig_flag == 0)
 		_puts("\n$ ");
 
