@@ -32,7 +32,7 @@ static void sig_handler(int uuv)
 int main(int argc __attribute__((unused)), char **argv, char **environment)
 {
 	vars_t vars = {NULL, NULL, NULL, 0, NULL, 0, NULL};
-	unsigned int is_pipe = 0, i;
+	unsigned int is_pipe = 0, i, sig_flag;
 	size_t len_buffer = 0;
 
 	vars.argv = argv;
