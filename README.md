@@ -45,9 +45,9 @@ $ pwd
 ```
 ```sh
 $ ls -l
-drwxrwxr-x 7 vagrant vagrant  4096 Apr  7 01:48 hsh
--rw-rw-r-- 1 vagrant vagrant   148 Apr  7 00:00 shell.h
--rwxrw-r-- 1 vagrant vagrant    28 Apr  7 15:35 shell.c
+drwxrwxr-x 7 vagrant vagrant  4096 Dec  15 11:42 hsh
+-rw-rw-r-- 1 vagrant vagrant   148 Dec  15 11:42 shell.h
+-rwxrw-r-- 1 vagrant vagrant    28 Dec  15 11:29 shell.c
 ```
 But also in non-interactive mode:
 ```sh
